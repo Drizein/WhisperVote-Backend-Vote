@@ -2,6 +2,7 @@
 
 WhisperVote is a voting application built with C# and ASP.NET Core. It uses MariaDB as the database and Docker for containerization.
 This project was created as part of the course "IT-Projekt" at the Ostfalia University of Applied Sciences in Suderburg.
+All four projects are parts of the WhisperVote application.
 
 ## Prerequisites
 
@@ -13,8 +14,8 @@ This project was created as part of the course "IT-Projekt" at the Ostfalia Univ
 ### Clone the repository
 
 ```sh
-git clone https://github.com/Drizein/WhisperVote.git
-cd WhisperVote
+git clone https://github.com/Drizein/WhisperVote-Backend-Vote.git
+cd WhisperVote-Backend-Vote
 ```
 
 ### Set the environment variables
