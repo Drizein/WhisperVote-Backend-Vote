@@ -1,0 +1,42 @@
+services:
+  maria-db-vote:
+    container_name: maria-db-vote
+    hostname: maria-db-vote
+    restart: unless-stopped
+    image: 'mariadb:latest'
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect" ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    environment:
+      - 'MARIADB_DATABASE=WhisperVoteVote'
+      - 'MARIADB_PASSWORD=SuperSicheresPasswort123!'
+      - 'MARIADB_ROOT_PASSWORD=SuperSicheresPasswort123!'
+      - 'MARIADB_USER=WhisperVote'
+    volumes:
+      - maria-db-vote-data:/var/lib/mysql
+    networks:
+      - shared
+
+  vote-backend:
+    container_name: vote
+    build:
+        context: .
+    restart: unless-stopped
+    environment:
+      - 'ConnectionStrings__AuthServer=http://auth:9912'
+      - 'ASPNETCORE_HTTP_PORTS=9913'
+    ports:
+      - '9913:9913'
+    networks:
+      - shared
+    depends_on:
+      maria-db-vote:
+        condition: service_healthy
+
+networks:
+  shared:
+    external: true
+volumes:
+  maria-db-vote-data:
