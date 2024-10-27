@@ -20,7 +20,7 @@ cd WhisperVote-Backend-Vote
 
 ### Set the environment variables
 
-modify the `docker-compose.yml` file to set the environment variables for the MariaDB container and the .NET applicaation.
+modify the `docker-compose.yml` file to set the environment variables for the MariaDB container and the .NET application.
 
 ```sh
       - 'MARIADB_DATABASE=WhisperVoteVote'
